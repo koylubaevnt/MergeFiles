@@ -117,22 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="msMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="cbTypeFile.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Checked.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileDirectory.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileExtension.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pbCompanyIcon.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="lblPred.Text" xml:space="preserve">
+    <value>Предупреждение. Программа защищена законами и международными соглашениями об авторских правах. Полное или частичное копирование и распространение продукта любыми средствами запрещено без особого разрешения компании ООО "Линия Ритейл" и будет преследоваться по всей строгости международных законов.</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Данная библиотека является свободным программным обеспечением. Вы вправе распространять её и/или модифицировать в соответствии с условиями версии 2.1 либо по вашему выбору с условиями более поздней версии Стандартной Общественной Лицензии Ограниченного Применения GNU, опубликованной Free Software Foundation.
+
+Мы распространяем эту библиотеку в надежде на то, что она будет вам полезной, однако НЕ ПРЕДОСТАВЛЯЕМ НА НЕЕ НИКАКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ. Для получения более подробной информации ознакомьтесь со Стандартной Общественной Лицензией Ограниченного Применений GNU.
+
+Вместе с данной библиотекой вы должны были получить экземпляр Стандартной Общественной Лицензии Ограниченного Применения GNU. Если вы его не получили, сообщите об этом в Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.</value>
+  </data>
 </root>

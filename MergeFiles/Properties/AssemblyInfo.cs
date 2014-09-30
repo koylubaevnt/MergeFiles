@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("MergeFiles")]
+[assembly: AssemblyTitle("Merge Files")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Lukoil")]
-[assembly: AssemblyProduct("MergeFiles")]
-[assembly: AssemblyCopyright("Copyright © Lukoil 2014")]
+[assembly: AssemblyCompany("ООО 'Линия Ритейл'")]
+[assembly: AssemblyProduct("Merge Files")]
+[assembly: AssemblyCopyright("Все права защищены © ООО 'Линия Ритейл' 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
