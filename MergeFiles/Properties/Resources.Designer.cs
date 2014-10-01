@@ -60,6 +60,20 @@ namespace MergeFiles.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ArrowDown {
+            get {
+                object obj = ResourceManager.GetObject("ArrowDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ArrowUp {
+            get {
+                object obj = ResourceManager.GetObject("ArrowUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap LineRetailLTD {
             get {
                 object obj = ResourceManager.GetObject("LineRetailLTD", resourceCulture);

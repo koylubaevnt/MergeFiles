@@ -54,6 +54,11 @@
             this.FileDirectory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btDown = new System.Windows.Forms.Button();
+            this.btUp = new System.Windows.Forms.Button();
+            this.tsmiMark = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMarkAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUnmarkAll = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +70,7 @@
             this.tsmiAbout});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(656, 24);
+            this.msMain.Size = new System.Drawing.Size(673, 24);
             this.msMain.TabIndex = 0;
             // 
             // tsmiMain
@@ -73,6 +78,7 @@
             this.tsmiMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.tsmiSettings,
+            this.tsmiMark,
             this.tsmiMergeFiles,
             this.tsmiExit});
             this.tsmiMain.Name = "tsmiMain";
@@ -91,14 +97,14 @@
             // tsmiFileAdd
             // 
             this.tsmiFileAdd.Name = "tsmiFileAdd";
-            this.tsmiFileAdd.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFileAdd.Size = new System.Drawing.Size(135, 22);
             this.tsmiFileAdd.Text = "Добавить";
             this.tsmiFileAdd.Click += new System.EventHandler(this.tsmiFileAdd_Click);
             // 
             // tsmiFileDelete
             // 
             this.tsmiFileDelete.Name = "tsmiFileDelete";
-            this.tsmiFileDelete.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFileDelete.Size = new System.Drawing.Size(135, 22);
             this.tsmiFileDelete.Text = "Удалить";
             this.tsmiFileDelete.Click += new System.EventHandler(this.tsmiFileDelete_Click);
             // 
@@ -114,14 +120,16 @@
             // tsmiSettingsLoad
             // 
             this.tsmiSettingsLoad.Name = "tsmiSettingsLoad";
-            this.tsmiSettingsLoad.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSettingsLoad.Size = new System.Drawing.Size(140, 22);
             this.tsmiSettingsLoad.Text = "Загрузить";
+            this.tsmiSettingsLoad.Click += new System.EventHandler(this.tsmiSettingsLoad_Click);
             // 
             // tsmiSettingsSave
             // 
             this.tsmiSettingsSave.Name = "tsmiSettingsSave";
-            this.tsmiSettingsSave.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSettingsSave.Size = new System.Drawing.Size(140, 22);
             this.tsmiSettingsSave.Text = "Сохранить";
+            this.tsmiSettingsSave.Click += new System.EventHandler(this.tsmiSettingsSave_Click);
             // 
             // tsmiMergeFiles
             // 
@@ -149,27 +157,28 @@
             this.cbSeparator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSeparator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbSeparator.FormattingEnabled = true;
-            this.cbSeparator.Location = new System.Drawing.Point(79, 378);
+            this.cbSeparator.Location = new System.Drawing.Point(79, 376);
             this.cbSeparator.Name = "cbSeparator";
             this.cbSeparator.Size = new System.Drawing.Size(208, 21);
-            this.cbSeparator.TabIndex = 2;
+            this.cbSeparator.TabIndex = 7;
+            this.cbSeparator.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(560, 377);
+            this.btnExit.Location = new System.Drawing.Point(560, 375);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 9;
             this.btnExit.Text = "Выход";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.CloseProgram_Click);
             // 
             // btnMergeFiles
             // 
-            this.btnMergeFiles.Location = new System.Drawing.Point(473, 377);
+            this.btnMergeFiles.Location = new System.Drawing.Point(473, 375);
             this.btnMergeFiles.Name = "btnMergeFiles";
             this.btnMergeFiles.Size = new System.Drawing.Size(81, 23);
-            this.btnMergeFiles.TabIndex = 4;
+            this.btnMergeFiles.TabIndex = 8;
             this.btnMergeFiles.Text = "Объединить";
             this.btnMergeFiles.UseVisualStyleBackColor = true;
             this.btnMergeFiles.Click += new System.EventHandler(this.MergeFile_Click);
@@ -177,53 +186,53 @@
             // lSeparator
             // 
             this.lSeparator.AutoSize = true;
-            this.lSeparator.Location = new System.Drawing.Point(0, 381);
+            this.lSeparator.Location = new System.Drawing.Point(0, 379);
             this.lSeparator.Name = "lSeparator";
             this.lSeparator.Size = new System.Drawing.Size(76, 13);
-            this.lSeparator.TabIndex = 5;
+            this.lSeparator.TabIndex = 0;
             this.lSeparator.Text = "Разделитель:";
             // 
             // lDestinationDirectory
             // 
             this.lDestinationDirectory.AutoSize = true;
-            this.lDestinationDirectory.Location = new System.Drawing.Point(2, 323);
+            this.lDestinationDirectory.Location = new System.Drawing.Point(2, 321);
             this.lDestinationDirectory.Name = "lDestinationDirectory";
             this.lDestinationDirectory.Size = new System.Drawing.Size(125, 13);
-            this.lDestinationDirectory.TabIndex = 6;
+            this.lDestinationDirectory.TabIndex = 0;
             this.lDestinationDirectory.Text = "Папка для сохранения:";
             // 
             // tbDestinationDirectory
             // 
-            this.tbDestinationDirectory.Location = new System.Drawing.Point(133, 320);
+            this.tbDestinationDirectory.Location = new System.Drawing.Point(133, 318);
             this.tbDestinationDirectory.Name = "tbDestinationDirectory";
             this.tbDestinationDirectory.Size = new System.Drawing.Size(502, 20);
-            this.tbDestinationDirectory.TabIndex = 7;
+            this.tbDestinationDirectory.TabIndex = 5;
             this.tbDestinationDirectory.DoubleClick += new System.EventHandler(this.ChooseDestinationFileName_Click);
             // 
             // tbDestinationFileName
             // 
-            this.tbDestinationFileName.Location = new System.Drawing.Point(133, 346);
+            this.tbDestinationFileName.Location = new System.Drawing.Point(133, 344);
             this.tbDestinationFileName.Name = "tbDestinationFileName";
             this.tbDestinationFileName.Size = new System.Drawing.Size(502, 20);
-            this.tbDestinationFileName.TabIndex = 9;
+            this.tbDestinationFileName.TabIndex = 6;
             this.tbDestinationFileName.DoubleClick += new System.EventHandler(this.ChooseDestinationFileName_Click);
             // 
             // lDestinationFileName
             // 
             this.lDestinationFileName.AutoSize = true;
-            this.lDestinationFileName.Location = new System.Drawing.Point(2, 349);
+            this.lDestinationFileName.Location = new System.Drawing.Point(2, 347);
             this.lDestinationFileName.Name = "lDestinationFileName";
             this.lDestinationFileName.Size = new System.Drawing.Size(67, 13);
-            this.lDestinationFileName.TabIndex = 8;
+            this.lDestinationFileName.TabIndex = 0;
             this.lDestinationFileName.Text = "Имя файла:";
             // 
             // lTypeFile
             // 
             this.lTypeFile.AutoSize = true;
-            this.lTypeFile.Location = new System.Drawing.Point(0, 34);
+            this.lTypeFile.Location = new System.Drawing.Point(0, 32);
             this.lTypeFile.Name = "lTypeFile";
             this.lTypeFile.Size = new System.Drawing.Size(64, 13);
-            this.lTypeFile.TabIndex = 11;
+            this.lTypeFile.TabIndex = 0;
             this.lTypeFile.Text = "Тип файла:";
             // 
             // cbTypeFile
@@ -232,10 +241,11 @@
             this.cbTypeFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbTypeFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cbTypeFile.IntegralHeight = false;
-            this.cbTypeFile.Location = new System.Drawing.Point(79, 31);
+            this.cbTypeFile.Location = new System.Drawing.Point(70, 29);
             this.cbTypeFile.Name = "cbTypeFile";
             this.cbTypeFile.Size = new System.Drawing.Size(208, 21);
-            this.cbTypeFile.TabIndex = 10;
+            this.cbTypeFile.TabIndex = 1;
+            this.cbTypeFile.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // dgvFiles
             // 
@@ -244,25 +254,31 @@
             this.dgvFiles.AllowUserToResizeColumns = false;
             this.dgvFiles.AllowUserToResizeRows = false;
             this.dgvFiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvFiles.CausesValidation = false;
             this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Checked,
             this.FileDirectory,
             this.FileName,
             this.FileExtension});
-            this.dgvFiles.Location = new System.Drawing.Point(5, 62);
-            this.dgvFiles.MultiSelect = false;
+            this.dgvFiles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvFiles.Location = new System.Drawing.Point(5, 60);
             this.dgvFiles.Name = "dgvFiles";
             this.dgvFiles.RowHeadersVisible = false;
+            this.dgvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFiles.ShowEditingIcon = false;
-            this.dgvFiles.Size = new System.Drawing.Size(651, 252);
-            this.dgvFiles.TabIndex = 12;
+            this.dgvFiles.Size = new System.Drawing.Size(630, 252);
+            this.dgvFiles.TabIndex = 2;
+            this.dgvFiles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellClick);
+            this.dgvFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellDoubleClick);
+            this.dgvFiles.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvFiles_KeyUp);
             // 
             // Checked
             // 
             this.Checked.Frozen = true;
             this.Checked.HeaderText = "";
             this.Checked.Name = "Checked";
+            this.Checked.ReadOnly = true;
             this.Checked.Width = 25;
             // 
             // FileDirectory
@@ -270,7 +286,6 @@
             this.FileDirectory.Frozen = true;
             this.FileDirectory.HeaderText = "Директория файла";
             this.FileDirectory.Name = "FileDirectory";
-            this.FileDirectory.ReadOnly = true;
             this.FileDirectory.Width = 300;
             // 
             // FileName
@@ -278,7 +293,6 @@
             this.FileName.Frozen = true;
             this.FileName.HeaderText = "Имя файла";
             this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
             this.FileName.Width = 200;
             // 
             // FileExtension
@@ -286,13 +300,59 @@
             this.FileExtension.Frozen = true;
             this.FileExtension.HeaderText = "Расширение файла";
             this.FileExtension.Name = "FileExtension";
-            this.FileExtension.ReadOnly = true;
+            // 
+            // btDown
+            // 
+            this.btDown.BackgroundImage = global::MergeFiles.Properties.Resources.ArrowDown;
+            this.btDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btDown.Location = new System.Drawing.Point(641, 209);
+            this.btDown.Name = "btDown";
+            this.btDown.Size = new System.Drawing.Size(29, 32);
+            this.btDown.TabIndex = 4;
+            this.btDown.UseVisualStyleBackColor = true;
+            this.btDown.Click += new System.EventHandler(this.buttonChangeOrderFiles_Click);
+            // 
+            // btUp
+            // 
+            this.btUp.BackgroundImage = global::MergeFiles.Properties.Resources.ArrowUp;
+            this.btUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btUp.Location = new System.Drawing.Point(641, 170);
+            this.btUp.Name = "btUp";
+            this.btUp.Size = new System.Drawing.Size(29, 33);
+            this.btUp.TabIndex = 3;
+            this.btUp.UseVisualStyleBackColor = true;
+            this.btUp.Click += new System.EventHandler(this.buttonChangeOrderFiles_Click);
+            // 
+            // tsmiMark
+            // 
+            this.tsmiMark.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiMarkAll,
+            this.tsmiUnmarkAll});
+            this.tsmiMark.Name = "tsmiMark";
+            this.tsmiMark.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMark.Text = "Отметка";
+            // 
+            // tsmiMarkAll
+            // 
+            this.tsmiMarkAll.Name = "tsmiMarkAll";
+            this.tsmiMarkAll.Size = new System.Drawing.Size(201, 22);
+            this.tsmiMarkAll.Text = "Выделить все";
+            this.tsmiMarkAll.Click += new System.EventHandler(this.tsmiMarkAll_Click);
+            // 
+            // tsmiUnmarkAll
+            // 
+            this.tsmiUnmarkAll.Name = "tsmiUnmarkAll";
+            this.tsmiUnmarkAll.Size = new System.Drawing.Size(201, 22);
+            this.tsmiUnmarkAll.Text = "Снять отметку со всех";
+            this.tsmiUnmarkAll.Click += new System.EventHandler(this.tsmiUnmarkAll_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 401);
+            this.ClientSize = new System.Drawing.Size(673, 406);
+            this.Controls.Add(this.btDown);
+            this.Controls.Add(this.btUp);
             this.Controls.Add(this.dgvFiles);
             this.Controls.Add(this.lTypeFile);
             this.Controls.Add(this.cbTypeFile);
@@ -307,7 +367,6 @@
             this.Controls.Add(this.msMain);
             this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
@@ -339,11 +398,16 @@
         private System.Windows.Forms.Label lDestinationFileName;
         private System.Windows.Forms.Label lTypeFile;
         private System.Windows.Forms.ComboBox cbTypeFile;
+        private System.Windows.Forms.DataGridView dgvFiles;
+        private System.Windows.Forms.Button btUp;
+        private System.Windows.Forms.Button btDown;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileDirectory;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileExtension;
-        private System.Windows.Forms.DataGridView dgvFiles;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMark;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMarkAll;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUnmarkAll;
     }
 }
 
