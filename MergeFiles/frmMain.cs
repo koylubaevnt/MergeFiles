@@ -20,6 +20,9 @@ namespace MergeFiles
         int typeFileIndex;
         int separatorIndex;
         Settings settingsApp;
+        string fileExtensionSupportDescribe;
+        string fileExtensionSupport;
+
 
         public frmMain()
         {
@@ -156,13 +159,12 @@ namespace MergeFiles
                     oBreak = Word.WdBreakType.wdLineBreak;
                     break;
             }
-            string fileExtensionSupport;
+            
             if (typeFileIndex == 0)
             {
                 //Microsoft Office Word
 
-                //Вставлять можем только тектсовые файлы!!!
-                fileExtensionSupport = "*.docx; *.docm; *.dotx; *.dotm; *.doc; *.doct; *.htm; *.html; *.rtf; *.mht; *.mhtml; *.xml; *.odt; *.txt";
+                //Проверим а все ли файлы удовлетворяют требованиям по объединению
                 if (!CheckFiles(fileExtensionSupport))
                     return;
 
@@ -221,16 +223,16 @@ namespace MergeFiles
             {
                 //Microsoft Office Excel
 
-                //Вставлять можем только файлы Excel!!!
-                fileExtensionSupport = "*.xlsx; *.xlsm; *.xltx; *.xltm; *.xls; *.xlt; *.htm; *.html; *.txt; *.xml; *.prn; *.tsv; *.ods; *.csv";
+                //Проверим а все ли файлы удовлетворяют требованиям по объединению
                 if (!CheckFiles(fileExtensionSupport))
                     return;
                 
                 //Создаем объекты: приложение Excel и документ
-                Excel._Application oExcel = new Excel.Application();
-                Excel._Workbook oExcelWorkbook, oExcelWorkbookSource;
+                Excel.Application oExcel = new Excel.Application();
+                Excel.Workbook oExcelWorkbook, oExcelWorkbookSource;
                 
                 oExcel.Visible = false;
+                oExcel.DisplayAlerts = false;
                 oExcel.SheetsInNewWorkbook = 1;
                 oExcel.Workbooks.Add(oMissing);
                 oExcelWorkbook = oExcel.Workbooks[1];
@@ -260,11 +262,12 @@ namespace MergeFiles
                 }
                 if (oExcelWorkbook.Sheets.Count > 1)
                 {
-                    oExcelWorkbook.Sheets[1].Delete();
+                    ((Excel.Worksheet) oExcelWorkbook.Worksheets[1]).Delete();
                 }
-                
+
                 if (!String.IsNullOrEmpty(fullSaveFileName))
                 {
+                    oExcel.DisplayAlerts = true;
                     Object oFullSaveFileName = (Object)fullSaveFileName;
                     //Сохраним файл
                     oExcelWorkbook.SaveAs(oFullSaveFileName, oMissing, oMissing, oMissing,
@@ -276,8 +279,12 @@ namespace MergeFiles
                     oExcel.Quit();
                 }
                 else
+                {
                     //Установим документ в состояние видимости
                     oExcel.Visible = true;
+                    oExcel.DisplayAlerts = true;
+                
+                }
             }
             else
                 //None
@@ -292,20 +299,7 @@ namespace MergeFiles
         private void ChooseDestinationFileName_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            switch (typeFileIndex)
-            {
-                case 0:
-                    saveFileDialog.Filter = "Microsoft Office Word (*.doc,*.docx)|*.doc;*.docx";
-                    break;
-                case 1:
-                    saveFileDialog.Filter = "Microsoft Office Excel (*.xls, *.xlsx)|*.xls;*.xlsx";
-                    break;
-
-                default:
-                    saveFileDialog.Filter = "";
-                    return;
-            }
+            saveFileDialog.Filter = fileExtensionSupportDescribe + "|" + fileExtensionSupport;
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 
@@ -348,7 +342,8 @@ namespace MergeFiles
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            openFileDialog.Filter = "Microsoft Office Word (*.doc,*.docx)|*.doc;*.docx|Microsoft Office Excel (*.xls, *.xlsx)|*.xls;*.xlsx|All Support Files (*.doc,*.docx, *.xls, *.xlsx)|*.doc;*.docx;*.xls;*.xlsx";
+            //openFileDialog.Filter = "Microsoft Office Word (*.doc,*.docx)|*.doc;*.docx|Microsoft Office Excel (*.xls, *.xlsx)|*.xls;*.xlsx|All Support Files (*.doc,*.docx, *.xls, *.xlsx)|*.doc;*.docx;*.xls;*.xlsx";
+            openFileDialog.Filter = fileExtensionSupportDescribe + "|" + fileExtensionSupport;
             openFileDialog.FilterIndex = 1;
             openFileDialog.Multiselect = true;
             openFileDialog.RestoreDirectory = true;
@@ -397,9 +392,25 @@ namespace MergeFiles
                 case "cbTypeFile":
                     typeFileIndex = comboBox.SelectedIndex;
                     if (typeFileIndex == 1)
+                    {
+                        //fileExtensionSupport = "*.xlsx; *.xlsm; *.xltx; *.xltm; *.xls; *.xlt; *.htm; *.html; *.txt; *.xml; *.prn; *.tsv; *.ods; *.csv";
+                        fileExtensionSupport = "*.xlsx; *.xlsm; *.xltx; *.xltm; *.xls; *.xlt";//для работы с *.tsv; *.ods; *.csv надо переделывать обработку слияния!
+                        fileExtensionSupportDescribe = "Все файлы Excel (" + fileExtensionSupport + ")";
                         cbSeparator.Enabled = false;
-                    else
+                    }
+                    else if (typeFileIndex == 0)
+                    {
+                        fileExtensionSupport = "*.docx; *.docm; *.dotx; *.dotm; *.doc; *.doct; *.htm; *.html; *.rtf; *.mht; *.mhtml; *.xml; *.odt; *.txt";
+                        fileExtensionSupportDescribe = "Все файлы Word (" + fileExtensionSupport + ")";
                         cbSeparator.Enabled = true;
+                    }
+                    else
+	                {
+                        fileExtensionSupport = "";
+                        fileExtensionSupportDescribe = "";
+                        
+	                }
+
                     break;
                 case "cbSeparator":
                     separatorIndex = comboBox.SelectedIndex;

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.txtVer = new System.Windows.Forms.TextBox();
-            this.lblHis = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -40,22 +39,12 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVer.BackColor = System.Drawing.Color.White;
             this.txtVer.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtVer.Location = new System.Drawing.Point(12, 26);
+            this.txtVer.Location = new System.Drawing.Point(12, 12);
             this.txtVer.Multiline = true;
             this.txtVer.Name = "txtVer";
             this.txtVer.ReadOnly = true;
-            this.txtVer.Size = new System.Drawing.Size(531, 353);
+            this.txtVer.Size = new System.Drawing.Size(531, 367);
             this.txtVer.TabIndex = 6;
-            this.txtVer.Text = "[1.0]\r\n\r\nПримечание:\r\n+ добавлено\r\n- удалено\r\n* исправлено/изменено";
-            // 
-            // lblHis
-            // 
-            this.lblHis.AutoSize = true;
-            this.lblHis.Location = new System.Drawing.Point(9, 10);
-            this.lblHis.Name = "lblHis";
-            this.lblHis.Size = new System.Drawing.Size(32, 13);
-            this.lblHis.TabIndex = 5;
-            this.lblHis.Text = "lblHis";
             // 
             // btnAccept
             // 
@@ -76,7 +65,6 @@
             this.ClientSize = new System.Drawing.Size(555, 420);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.txtVer);
-            this.Controls.Add(this.lblHis);
             this.Name = "frmHistory";
             this.Text = "История версий";
             this.Load += new System.EventHandler(this.frmHistory_Load);
@@ -88,7 +76,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtVer;
-        private System.Windows.Forms.Label lblHis;
         private System.Windows.Forms.Button btnAccept;
     }
 }
